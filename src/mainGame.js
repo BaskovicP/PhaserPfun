@@ -14,10 +14,10 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image('sky',  '../assets/sky.png');
-  this.load.image('ground', pathToAssets +'platform.png');
-  this.load.image('star',pathToAssets + 'star.png');
-  this.load.spritesheet('dude',pathToAssets + 'dude.png', {
+  this.load.image('sky', pathToAssets + 'sky.png');
+  this.load.image('ground', pathToAssets + 'platform.png');
+  this.load.image('star', pathToAssets + 'star.png');
+  this.load.spritesheet('dude', pathToAssets + 'dude.png', {
     frameWidth: 32,
     frameHeight: 48
   });
@@ -25,6 +25,7 @@ function preload() {
 
 function create() {
   this.add.image(400, 300, 'sky');
+  this.add.image(400, 300, 'star');
 }
 
 function update() {}
