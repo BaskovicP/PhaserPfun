@@ -1,5 +1,3 @@
-const pathToAssets = '../assets/';
-
 var config = {
   type: Phaser.AUTO,
   width: 800,
@@ -21,10 +19,11 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image('sky', pathToAssets + 'sky.png');
-  this.load.image('ground', pathToAssets + 'platform.png');
-  this.load.image('star', pathToAssets + 'star.png');
-  this.load.spritesheet('dude', pathToAssets + 'dude.png', {
+  this.load.path = '../assets/';
+  this.load.image('sky', 'sky.png');
+  this.load.image('ground', 'platform.png');
+  this.load.image('star', 'star.png');
+  this.load.spritesheet('dude', 'dude.png', {
     frameWidth: 32,
     frameHeight: 48
   });
