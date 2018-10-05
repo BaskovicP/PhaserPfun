@@ -20,6 +20,8 @@ var player;
 var stars;
 var platforms;
 var cursors;
+var score = 0;
+var scoreText;
 
 var game = new Phaser.Game(config);
 
@@ -52,7 +54,11 @@ function create() {
 
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
-
+  cursors = this.input.keyboard.createCursorKeys();
+  scoreText = this.add.text(16, 16, 'score: 0', {
+    fontSize: '32px',
+    fill: '#000'
+  });
   stars = this.physics.add.group({
     key: 'star',
     repeat: 14,
@@ -87,8 +93,6 @@ function create() {
   player.body.setGravityY(300);
 
   this.physics.add.collider(player, platforms);
-
-  cursors = this.input.keyboard.createCursorKeys();
 }
 
 function update() {
@@ -109,4 +113,6 @@ function update() {
 }
 function collectStar(player, star) {
   star.disableBody(true, true);
+  score += 10;
+  scoreText.setText('Score: ' + score);
 }
