@@ -16,6 +16,11 @@ var config = {
   }
 };
 
+var player;
+var stars;
+var platforms;
+var cursors;
+
 var game = new Phaser.Game(config);
 
 function preload() {
@@ -47,6 +52,18 @@ function create() {
 
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
+
+  stars = this.physics.add.group({
+    key: 'star',
+    repeat: 14,
+    setXY: { x: 12, y: 0, stepX: 70 }
+  });
+
+  stars.children.iterate(function(child) {
+    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+  });
+  this.physics.add.collider(stars, platforms);
+  this.physics.add.overlap(player, stars, collectStar, null, this);
 
   this.anims.create({
     key: 'left',
@@ -89,4 +106,7 @@ function update() {
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
   }
+}
+function collectStar(player, star) {
+  star.disableBody(true, true);
 }
